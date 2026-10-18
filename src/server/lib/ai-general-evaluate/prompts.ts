@@ -1,7 +1,7 @@
 import type { AiProviderId } from "../ai-provider";
 import { PROMPT_SECTION_SEPARATOR } from "../prompt-optimize/index";
 
-export type GeneralEvaluateUiLocale = "en" | "ko";
+export type GeneralEvaluateUiLocale = "en" | "ja";
 
 const EXECUTION_RULES = `- You are an AI assistant that evaluates General Resumes (no Job Description).
 - Output Markdown only. Do not output JSON. Do not wrap the answer in a code fence.
@@ -11,7 +11,7 @@ const EXECUTION_RULES = `- You are an AI assistant that evaluates General Resume
 - Score and critique the resume text only—do not invent job requirements or employers.`;
 
 function uiLocaleLabel(locale: GeneralEvaluateUiLocale): string {
-  return locale === "ko" ? "Korean" : "English";
+  return locale === "ja" ? "Japanese" : "English";
 }
 
 export function buildGeneralEvaluateResponseLanguageSection(
@@ -52,9 +52,7 @@ const USER_PROMPT_ONLY_EXECUTION_RULES = `- You are an AI assistant that evaluat
 - Obey the **Response language** section in the user message for the language of your entire answer.
 - Score and critique the resume text only—do not invent job requirements or employers.`;
 
-export function getGeneralAiEvaluateUserPromptOnlySystemPrompt(
-  _provider: AiProviderId,
-): string {
+export function getGeneralAiEvaluateUserPromptOnlySystemPrompt(): string {
   return `# Execution rules\n\n${USER_PROMPT_ONLY_EXECUTION_RULES}\n\n${PROMPT_SECTION_SEPARATOR}\n\n${OPENAI_PROVIDER_NOTES}`;
 }
 
